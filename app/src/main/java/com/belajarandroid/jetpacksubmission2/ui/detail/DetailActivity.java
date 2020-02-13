@@ -25,7 +25,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView tvGenre;
     private ImageView imgPoster, imgBackdrop;
     private ImageButton btnBack;
-//    private ProgressBar progressBar;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class DetailActivity extends AppCompatActivity {
         imgPoster = findViewById(R.id.detail_poster);
         imgBackdrop = findViewById(R.id.detail_backdrop);
         btnBack = findViewById(R.id.detail_back);
-//        progressBar = findViewById(R.id.progress_bar);
+        progressBar = findViewById(R.id.progress_bar);
 
         //field
         TextView tvAdultField = findViewById(R.id.tv_extra);
@@ -61,9 +61,9 @@ public class DetailActivity extends AppCompatActivity {
                 tvEpisodeField.setText(getResources().getString(R.string.revenue));
 
                 if (detailId != null) {
-//                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
                     viewModel.getDetail(detailId, detailType).observe(this, filmEntity -> {
-//                        progressBar.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.GONE);
                         setDetailData(filmEntity);
                     });
                 }
@@ -73,9 +73,9 @@ public class DetailActivity extends AppCompatActivity {
                 tvEpisodeField.setText(getResources().getString(R.string.episode));
 
                 if (detailId != null) {
-//                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
                     viewModel.getDetail(detailId, detailType).observe(this, filmEntity -> {
-//                        progressBar.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.GONE);
                         setDetailData(filmEntity);
                     });
                 }
