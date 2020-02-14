@@ -4,6 +4,7 @@ import android.os.Handler;
 
 import com.belajarandroid.jetpacksubmission2.data.source.remote.response.MovieResponse;
 import com.belajarandroid.jetpacksubmission2.data.source.remote.response.ShowResponse;
+import com.belajarandroid.jetpacksubmission2.utils.EspressoIdlingResource;
 import com.belajarandroid.jetpacksubmission2.utils.JsonHelper;
 
 import java.util.List;
@@ -26,11 +27,19 @@ public class RemoteDataSource {
     }
 
     public void getMovie(LoadMovieCallback callback) {
-        handler.postDelayed(() -> callback.onMovieReceived(jsonHelper.loadMovie()), SERVICE_LATENCY_IN_MILIS);
+        EspressoIdlingResource.increment();
+        handler.postDelayed(() -> {
+            callback.onMovieReceived(jsonHelper.loadMovie());
+            EspressoIdlingResource.decrement();
+        }, SERVICE_LATENCY_IN_MILIS);
     }
 
     public void getShow(LoadShowCallback callback) {
-        handler.postDelayed(() -> callback.onShowCallback(jsonHelper.loadShow()), SERVICE_LATENCY_IN_MILIS);
+        EspressoIdlingResource.increment();
+        handler.postDelayed(() -> {
+            callback.onShowCallback(jsonHelper.loadShow());
+            EspressoIdlingResource.decrement();
+        }, SERVICE_LATENCY_IN_MILIS);
     }
 
     public interface LoadMovieCallback {

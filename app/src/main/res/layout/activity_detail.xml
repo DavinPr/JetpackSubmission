@@ -276,7 +276,6 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_overview" />
 
                 <View
-                    android:id="@+id/horizontal_line1"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
@@ -286,7 +285,6 @@
                     app:layout_constraintTop_toBottomOf="@id/detail_overview" />
 
                 <View
-                    android:id="@+id/horizontal_line2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"

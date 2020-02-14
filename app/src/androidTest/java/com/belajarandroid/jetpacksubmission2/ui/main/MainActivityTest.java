@@ -1,12 +1,16 @@
 package com.belajarandroid.jetpacksubmission2.ui.main;
 
+import androidx.test.espresso.IdlingRegistry;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.rule.ActivityTestRule;
 
 import com.belajarandroid.jetpacksubmission2.R;
 import com.belajarandroid.jetpacksubmission2.data.FilmEntity;
 import com.belajarandroid.jetpacksubmission2.utils.DataDummy;
+import com.belajarandroid.jetpacksubmission2.utils.EspressoIdlingResource;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -26,6 +30,16 @@ public class MainActivityTest {
 
     @Rule
     public ActivityTestRule activityTestRule = new ActivityTestRule<>(MainActivity.class);
+
+    @Before
+    public void setUp() {
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResource());
+    }
+
+    @After
+    public void tearDown() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getEspressoIdlingResource());
+    }
 
     @Test
     public void loadMovie() {
@@ -49,25 +63,16 @@ public class MainActivityTest {
         onView(withId(R.id.detail_title)).check(matches(withText(dummyMovie.get(0).getFilmTitle())));
         onView(withId(R.id.detail_date)).check(matches(isDisplayed()));
         onView(withId(R.id.detail_date)).check(matches(withText(dummyMovie.get(0).getFilmDate())));
-        onView(withId(R.id.detail_runtime)).check(matches(isDisplayed()));
-        onView(withId(R.id.detail_runtime)).check(matches(withText(dummyMovie.get(0).getFilmRuntime())));
-        onView(withId(R.id.detail_status)).check(matches(isDisplayed()));
-        onView(withId(R.id.detail_status)).check(matches(withText(dummyMovie.get(0).getFilmStatus())));
-        onView(withId(R.id.detail_extra)).check(matches(isDisplayed()));
-        onView(withId(R.id.detail_extra)).check(matches(withText(dummyMovie.get(0).getFilmAdult())));
         onView(withId(R.id.detail_rating)).check(matches(isDisplayed()));
         onView(withId(R.id.detail_rating)).check(matches(withText(dummyMovie.get(0).getFilmRate())));
         onView(withId(R.id.detail_popularity)).check(matches(isDisplayed()));
         onView(withId(R.id.detail_popularity)).check(matches(withText(dummyMovie.get(0).getFilmPopularity())));
         onView(withId(R.id.detail_overview)).check(matches(isDisplayed()));
         onView(withId(R.id.detail_overview)).check(matches(withText(dummyMovie.get(0).getFilmOverview())));
-        onView(withId(R.id.detail_seasons_budget)).check(matches(isDisplayed()));
-        onView(withId(R.id.detail_seasons_budget)).check(matches(withText(dummyMovie.get(0).getFilmBudget())));
-        onView(withId(R.id.detail_episode_revenue)).check(matches(isDisplayed()));
-        onView(withId(R.id.detail_episode_revenue)).check(matches(withText(dummyMovie.get(0).getFilmRevenue())));
         onView(withId(R.id.detail_genre)).check(matches(isDisplayed()));
         onView(withId(R.id.detail_genre)).check(matches(withText(dummyMovie.get(0).getFilmGenre())));
-
+        onView(withId(R.id.detail_lang)).check(matches(isDisplayed()));
+        onView(withId(R.id.detail_lang)).check(matches(withText(dummyMovie.get(0).getFilmLang())));
     }
 
 }

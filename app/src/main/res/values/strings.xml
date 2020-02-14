@@ -7,16 +7,8 @@
     <string name="rating">Rating</string>
     <string name="content_image">Image</string>
     <string name="date">Date</string>
-    <string name="runtime">Runtime</string>
     <string name="genre">Genre</string>
     <string name="overview">Overview</string>
     <string name="popularity">Popularity</string>
-    <string name="episode">All Episodes</string>
-    <string name="seasons">All Seasons</string>
-    <string name="status">Status</string>
-    <string name="adult">Adult</string>
-    <string name="in_production">In Production</string>
-    <string name="budget">Budget</string>
-    <string name="revenue">Revenue</string>
     <string name="language">Language</string>
 </resources>

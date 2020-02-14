@@ -1,4 +1,4 @@
-package com.belajarandroid.jetpacksubmission2.ui.show;
+package com.belajarandroid.jetpacksubmission2.ui.detail;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
@@ -15,17 +15,15 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ShowViewModelTest {
-    private ShowViewModel showViewModel;
+public class DetailViewModelTest {
+
+    private DetailViewModel detailViewModel;
 
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
@@ -34,26 +32,28 @@ public class ShowViewModelTest {
     private FilmRepository filmRepository;
 
     @Mock
-    private Observer<List<FilmEntity>> observer;
+    private Observer<FilmEntity> observer;
 
     @Before
     public void setUp() {
-        showViewModel = new ShowViewModel(filmRepository);
+        detailViewModel = new DetailViewModel(filmRepository);
     }
 
     @Test
-    public void getShow() {
-        ArrayList<FilmEntity> dummyFilm = DataDummy.generateDummyShow();
-        MutableLiveData<List<FilmEntity>> films = new MutableLiveData<>();
-        films.setValue(dummyFilm);
+    public void getDetail() {
+        FilmEntity dummyFilm = DataDummy.generateDummyMovie().get(0);
+        String id = dummyFilm.getFilmId();
+        String type = "movie";
+        MutableLiveData<FilmEntity> filmEntity = new MutableLiveData<>();
+        filmEntity.setValue(dummyFilm);
+        when(filmRepository.getDetailMovie(dummyFilm.getFilmId())).thenReturn(filmEntity);
+        FilmEntity entity = detailViewModel.getDetail(id, type).getValue();
+        verify(filmRepository).getDetailMovie(id);
+        assertNotNull(entity);
+        assertEquals(dummyFilm.getFilmTitle(), entity.getFilmTitle());
+        assertEquals(dummyFilm.getFilmRate(), entity.getFilmRate());
 
-        when(filmRepository.getShow()).thenReturn(films);
-        List<FilmEntity> filmEntities = showViewModel.getShow().getValue();
-        verify(filmRepository).getShow();
-        assertNotNull(filmEntities);
-        assertEquals(10, filmEntities.size());
-
-        showViewModel.getShow().observeForever(observer);
+        detailViewModel.getDetail(id, type).observeForever(observer);
         verify(observer).onChanged(dummyFilm);
     }
 }

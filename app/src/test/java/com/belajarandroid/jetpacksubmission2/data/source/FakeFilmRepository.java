@@ -12,25 +12,12 @@ import com.belajarandroid.jetpacksubmission2.data.source.remote.response.ShowRes
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilmRepository implements FilmDataSource {
-
-    private volatile static FilmRepository INSTANCE = null;
+public class FakeFilmRepository implements FilmDataSource {
 
     private final RemoteDataSource remoteDataSource;
 
-    private FilmRepository(@NonNull RemoteDataSource remoteDataSource) {
+    FakeFilmRepository(@NonNull RemoteDataSource remoteDataSource) {
         this.remoteDataSource = remoteDataSource;
-    }
-
-    public static FilmRepository getInstance(RemoteDataSource remoteData) {
-        if (INSTANCE == null) {
-            synchronized (FilmRepository.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = new FilmRepository(remoteData);
-                }
-            }
-        }
-        return INSTANCE;
     }
 
     @Override
