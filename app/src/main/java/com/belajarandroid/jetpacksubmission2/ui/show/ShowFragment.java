@@ -15,10 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.belajarandroid.jetpacksubmission2.R;
-import com.belajarandroid.jetpacksubmission2.data.FilmEntity;
 import com.belajarandroid.jetpacksubmission2.viewmodel.ViewModelFactory;
-
-import java.util.List;
 
 
 /**

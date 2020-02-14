@@ -15,10 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.belajarandroid.jetpacksubmission2.R;
-import com.belajarandroid.jetpacksubmission2.data.FilmEntity;
 import com.belajarandroid.jetpacksubmission2.viewmodel.ViewModelFactory;
-
-import java.util.List;
 
 
 /**
@@ -56,6 +53,7 @@ public class MovieFragment extends Fragment {
             MovieViewModel viewModel = new ViewModelProvider(this, factory).get(MovieViewModel.class);
 
             MovieAdapter adapter = new MovieAdapter();
+            progressBar.setVisibility(View.VISIBLE);
             viewModel.getMovie().observe(this, filmEntities -> {
                 progressBar.setVisibility(View.GONE);
                 adapter.setMovie(filmEntities);

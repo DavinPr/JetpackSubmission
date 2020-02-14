@@ -62,8 +62,8 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ProgressBar
-                    style="@style/Widget.AppCompat.ProgressBar"
                     android:id="@+id/progress_bar"
+                    style="@style/Widget.AppCompat.ProgressBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -98,37 +98,16 @@
                     app:layout_constraintTop_toBottomOf="@+id/detail_title" />
 
                 <TextView
-                    android:id="@+id/tv_runtime"
+                    android:id="@+id/tv_lang"
                     style="@style/poppins_regular12"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/runtime"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/language"
+                    android:textColor="@color/colorTextBlack"
                     app:layout_constraintEnd_toEndOf="@+id/tv_date"
                     app:layout_constraintStart_toStartOf="@+id/tv_date"
                     app:layout_constraintTop_toBottomOf="@+id/tv_date" />
-
-                <TextView
-                    android:id="@+id/tv_status"
-                    style="@style/poppins_regular12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/status"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_runtime"
-                    app:layout_constraintStart_toStartOf="@+id/tv_runtime"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_runtime" />
-
-                <TextView
-                    android:id="@+id/tv_extra"
-                    style="@style/poppins_regular12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/in_production"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_status"
-                    app:layout_constraintStart_toStartOf="@+id/tv_status"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_status" />
 
                 <TextView
                     android:id="@+id/detail_date"
@@ -142,37 +121,15 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_date" />
 
                 <TextView
-                    android:id="@+id/detail_runtime"
+                    android:id="@+id/detail_lang"
                     style="@style/poppins_regular12"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/runtime"
+                    android:text="@string/language"
                     android:textColor="@color/colorTextBlack"
                     app:layout_constraintEnd_toEndOf="@+id/detail_date"
                     app:layout_constraintStart_toEndOf="@+id/tv_date"
-                    app:layout_constraintTop_toTopOf="@+id/tv_runtime" />
-
-                <TextView
-                    android:id="@+id/detail_status"
-                    style="@style/poppins_regular12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/status"
-                    android:textColor="@color/colorTextBlack"
-                    app:layout_constraintEnd_toEndOf="@+id/detail_runtime"
-                    app:layout_constraintStart_toEndOf="@+id/tv_status"
-                    app:layout_constraintTop_toTopOf="@+id/tv_status" />
-
-                <TextView
-                    android:id="@+id/detail_extra"
-                    style="@style/poppins_regular12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/adult"
-                    android:textColor="@color/colorTextBlack"
-                    app:layout_constraintEnd_toEndOf="@+id/detail_status"
-                    app:layout_constraintStart_toEndOf="@+id/tv_date"
-                    app:layout_constraintTop_toTopOf="@+id/tv_extra" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_lang" />
 
                 <View
                     android:layout_width="match_parent"
@@ -243,6 +200,18 @@
                     app:layout_constraintEnd_toEndOf="@+id/tv_popularity"
                     app:layout_constraintStart_toStartOf="@+id/tv_popularity"
                     app:layout_constraintTop_toBottomOf="@+id/tv_popularity" />
+
+                <TextView
+                    android:id="@+id/detail_genre"
+                    style="@style/poppins_regular12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/genre"
+                    android:textColor="@color/colorTextBlack"
+                    app:layout_constraintEnd_toEndOf="@+id/detail_date"
+                    app:layout_constraintStart_toStartOf="@+id/tv_date"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_lang" />
 
                 <View
                     android:id="@+id/horizontal_line3"
@@ -316,101 +285,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/detail_overview" />
 
-                <TextView
-                    android:id="@+id/tv_seasons_budget"
-                    style="@style/poppins_medium14"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="center"
-                    android:text="@string/seasons"
-                    app:layout_constraintEnd_toStartOf="@+id/vertical_line2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/vertical_line2" />
-
-                <TextView
-                    android:id="@+id/detail_seasons_budget"
-                    style="@style/poppins_regular12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="@string/budget"
-                    android:textColor="@color/colorTextBlack"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_seasons_budget"
-                    app:layout_constraintStart_toStartOf="@+id/tv_seasons_budget"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_seasons_budget" />
-
-                <View
-                    android:id="@+id/vertical_line2"
-                    android:layout_width="1dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/view_line"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/horizontal_line1" />
-
-                <TextView
-                    android:id="@+id/tv_episode_revenue"
-                    style="@style/poppins_medium14"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="center"
-                    android:text="@string/episode"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/vertical_line2"
-                    app:layout_constraintTop_toTopOf="@+id/vertical_line2" />
-
-                <TextView
-                    android:id="@+id/detail_episode_revenue"
-                    style="@style/poppins_regular12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="@string/revenue"
-                    android:textColor="@color/colorTextBlack"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_episode_revenue"
-                    app:layout_constraintStart_toStartOf="@+id/tv_episode_revenue"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_episode_revenue" />
-
                 <View
                     android:id="@+id/horizontal_line2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/view_line"
-                    app:layout_constraintTop_toBottomOf="@id/vertical_line2" />
-
-                <TextView
-                    android:id="@+id/tv_genre"
-                    style="@style/poppins_medium14"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/genre"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/horizontal_line2" />
-
-                <TextView
-                    android:id="@+id/detail_genre"
-                    style="@style/poppins_regular12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/genre"
-                    android:textColor="@color/colorTextBlack"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_genre"
-                    app:layout_constraintStart_toStartOf="@+id/tv_genre"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_genre" />
+                    app:layout_constraintTop_toBottomOf="@id/detail_overview" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

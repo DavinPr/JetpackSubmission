@@ -9,9 +9,6 @@ public class MovieResponse implements Parcelable {
     private String movieTitle, movieDate, movieRate, movieGenre, movieLang;
     private String movieOverview, moviePopularity;
 
-    public MovieResponse() {
-    }
-
     public MovieResponse(String movieId, String moviePoster, String movieBackdrop, String movieTitle, String movieDate, String movieRate, String movieGenre, String movieLang, String movieOverview, String moviePopularity) {
         this.movieId = movieId;
         this.moviePoster = moviePoster;
@@ -73,79 +70,39 @@ public class MovieResponse implements Parcelable {
         return movieId;
     }
 
-    public void setMovieId(String movieId) {
-        this.movieId = movieId;
-    }
-
     public String getMoviePoster() {
         return moviePoster;
-    }
-
-    public void setMoviePoster(String moviePoster) {
-        this.moviePoster = moviePoster;
     }
 
     public String getMovieBackdrop() {
         return movieBackdrop;
     }
 
-    public void setMovieBackdrop(String movieBackdrop) {
-        this.movieBackdrop = movieBackdrop;
-    }
-
     public String getMovieTitle() {
         return movieTitle;
-    }
-
-    public void setMovieTitle(String movieTitle) {
-        this.movieTitle = movieTitle;
     }
 
     public String getMovieDate() {
         return movieDate;
     }
 
-    public void setMovieDate(String movieDate) {
-        this.movieDate = movieDate;
-    }
-
     public String getMovieRate() {
         return movieRate;
-    }
-
-    public void setMovieRate(String movieRate) {
-        this.movieRate = movieRate;
     }
 
     public String getMovieGenre() {
         return movieGenre;
     }
 
-    public void setMovieGenre(String movieGenre) {
-        this.movieGenre = movieGenre;
-    }
-
     public String getMovieLang() {
         return movieLang;
-    }
-
-    public void setMovieLang(String movieLang) {
-        this.movieLang = movieLang;
     }
 
     public String getMovieOverview() {
         return movieOverview;
     }
 
-    public void setMovieOverview(String movieOverview) {
-        this.movieOverview = movieOverview;
-    }
-
     public String getMoviePopularity() {
         return moviePopularity;
-    }
-
-    public void setMoviePopularity(String moviePopularity) {
-        this.moviePopularity = moviePopularity;
     }
 }

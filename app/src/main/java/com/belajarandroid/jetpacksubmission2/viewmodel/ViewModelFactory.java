@@ -17,14 +17,14 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     private final FilmRepository filmRepository;
 
-    private ViewModelFactory(FilmRepository filmRepository){
+    private ViewModelFactory(FilmRepository filmRepository) {
         this.filmRepository = filmRepository;
     }
 
-    public static ViewModelFactory getInstance(Context context){
-        if (INSTANCE == null){
-            synchronized (ViewModelFactory.class){
-                if (INSTANCE == null){
+    public static ViewModelFactory getInstance(Context context) {
+        if (INSTANCE == null) {
+            synchronized (ViewModelFactory.class) {
+                if (INSTANCE == null) {
                     INSTANCE = new ViewModelFactory(Injection.provideRepository(context));
                 }
             }
@@ -35,12 +35,12 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     @SuppressWarnings("unchecked")
     @NonNull
     @Override
-    public <T extends ViewModel> T create(@NonNull Class<T> modelClass){
-        if (modelClass.isAssignableFrom(MovieViewModel.class)){
+    public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+        if (modelClass.isAssignableFrom(MovieViewModel.class)) {
             return (T) new MovieViewModel(filmRepository);
-        } else if (modelClass.isAssignableFrom(ShowViewModel.class)){
+        } else if (modelClass.isAssignableFrom(ShowViewModel.class)) {
             return (T) new ShowViewModel(filmRepository);
-        } else if (modelClass.isAssignableFrom(DetailViewModel.class)){
+        } else if (modelClass.isAssignableFrom(DetailViewModel.class)) {
             return (T) new DetailViewModel(filmRepository);
         }
 

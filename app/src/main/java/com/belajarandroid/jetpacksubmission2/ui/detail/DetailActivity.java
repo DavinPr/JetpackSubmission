@@ -22,7 +22,7 @@ public class DetailActivity extends AppCompatActivity {
     public static final String EXTRA_ID = "extra_id";
     public static final String EXTRA_TYPE = "extra_type";
     private TextView tvTitle, tvDate, tvRating, tvPopularity, tvOverview;
-    private TextView tvGenre;
+    private TextView tvGenre, tvLang;
     private ImageView imgPoster, imgBackdrop;
     private ImageButton btnBack;
     private ProgressBar progressBar;
@@ -39,15 +39,11 @@ public class DetailActivity extends AppCompatActivity {
         tvPopularity = findViewById(R.id.detail_popularity);
         tvOverview = findViewById(R.id.detail_overview);
         tvGenre = findViewById(R.id.detail_genre);
+        tvLang = findViewById(R.id.detail_lang);
         imgPoster = findViewById(R.id.detail_poster);
         imgBackdrop = findViewById(R.id.detail_backdrop);
         btnBack = findViewById(R.id.detail_back);
         progressBar = findViewById(R.id.progress_bar);
-
-        //field
-        TextView tvAdultField = findViewById(R.id.tv_extra);
-        TextView tvEpisodeField = findViewById(R.id.tv_episode_revenue);
-        TextView tvSeasonField = findViewById(R.id.tv_seasons_budget);
 
         String detailType = getIntent().getStringExtra(EXTRA_TYPE);
         String detailId = getIntent().getStringExtra(EXTRA_ID);
@@ -56,10 +52,6 @@ public class DetailActivity extends AppCompatActivity {
 
         if (detailType != null) {
             if (detailType.equals("movie")) {
-                tvAdultField.setText(getResources().getString(R.string.adult));
-                tvSeasonField.setText(getResources().getString(R.string.budget));
-                tvEpisodeField.setText(getResources().getString(R.string.revenue));
-
                 if (detailId != null) {
                     progressBar.setVisibility(View.VISIBLE);
                     viewModel.getDetail(detailId, detailType).observe(this, filmEntity -> {
@@ -68,10 +60,6 @@ public class DetailActivity extends AppCompatActivity {
                     });
                 }
             } else if (detailType.equals("tv")) {
-                tvAdultField.setText(getResources().getString(R.string.in_production));
-                tvSeasonField.setText(getResources().getString(R.string.seasons));
-                tvEpisodeField.setText(getResources().getString(R.string.episode));
-
                 if (detailId != null) {
                     progressBar.setVisibility(View.VISIBLE);
                     viewModel.getDetail(detailId, detailType).observe(this, filmEntity -> {
@@ -96,6 +84,7 @@ public class DetailActivity extends AppCompatActivity {
         tvPopularity.setText(filmEntity.getFilmPopularity());
         tvOverview.setText(filmEntity.getFilmOverview());
         tvGenre.setText(filmEntity.getFilmGenre());
+        tvLang.setText(filmEntity.getFilmLang());
 
         Glide.with(DetailActivity.this).
                 load(BuildConfig.TMDB_POSTER + filmEntity.getFilmPoster()).

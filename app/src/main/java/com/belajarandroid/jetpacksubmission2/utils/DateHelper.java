@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateHelper {
-    public String dateFormat(String date) {
+    String dateFormat(String date) {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat currDf = new SimpleDateFormat("yyyy-MM-dd");
 

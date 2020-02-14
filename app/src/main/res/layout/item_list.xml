@@ -40,6 +40,7 @@
             android:gravity="start"
             android:text="@string/title"
             android:textColor="@color/colorPrimaryDark"
+            android:maxLines="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/list_image"
             app:layout_constraintTop_toTopOf="@+id/list_image" />
