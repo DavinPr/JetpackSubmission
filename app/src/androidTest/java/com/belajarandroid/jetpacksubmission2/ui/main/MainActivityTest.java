@@ -24,6 +24,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 public class MainActivityTest {
+    //Testing
 
     private List<FilmEntity> dummyMovie = DataDummy.generateDummyMovie();
     private List<FilmEntity> dummyShow = DataDummy.generateDummyShow();
