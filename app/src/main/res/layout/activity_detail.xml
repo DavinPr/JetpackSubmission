@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    app:layoutDescription="@xml/collapse_toolbar"
+    tools:context=".ui.detail.DetailActivity">
+
+    <ImageView
+        android:id="@+id/detail_backdrop"
+        android:layout_width="match_parent"
+        android:layout_height="245dp"
+        android:background="@color/colorPrimary"
+        android:contentDescription="@string/content_image"
+        android:scaleType="fitXY" />
+
+    <ImageButton
+        android:id="@+id/detail_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/detail_poster"
+        android:layout_width="115dp"
+        android:layout_height="165dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/background_image"
+        android:contentDescription="@string/content_image"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/detail_upper"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_backdrop">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/detail_title"
+                    style="@style/poppins_semibold16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:maxLines="2"
+                    android:text="@string/title"
+                    android:textColor="@color/colorTextBlack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    style="@style/poppins_regular12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/date"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintStart_toStartOf="@+id/detail_title"
+                    app:layout_constraintTop_toBottomOf="@+id/detail_title" />
+
+                <TextView
+                    android:id="@+id/tv_lang"
+                    style="@style/poppins_regular12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/language"
+                    android:textColor="@color/colorTextBlack"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_date"
+                    app:layout_constraintStart_toStartOf="@+id/tv_date"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+
+                <TextView
+                    android:id="@+id/detail_date"
+                    style="@style/poppins_regular12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:textColor="@color/colorTextBlack"
+                    app:layout_constraintEnd_toEndOf="@+id/detail_title"
+                    app:layout_constraintStart_toEndOf="@+id/tv_date"
+                    app:layout_constraintTop_toTopOf="@+id/tv_date" />
+
+                <TextView
+                    android:id="@+id/detail_lang"
+                    style="@style/poppins_regular12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/language"
+                    android:textColor="@color/colorTextBlack"
+                    app:layout_constraintEnd_toEndOf="@+id/detail_date"
+                    app:layout_constraintStart_toEndOf="@+id/tv_date"
+                    app:layout_constraintTop_toTopOf="@+id/tv_lang" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/view_line"
+                    app:layout_constraintBottom_toTopOf="@id/vertical_line1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    style="@style/poppins_medium14"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center"
+                    android:text="@string/rating"
+                    app:layout_constraintEnd_toStartOf="@+id/vertical_line1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/vertical_line1" />
+
+                <TextView
+                    android:id="@+id/detail_rating"
+                    style="@style/poppins_regular12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_star"
+                    android:text="@string/rating"
+                    android:textColor="@color/colorTextBlack"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_rating"
+                    app:layout_constraintStart_toStartOf="@+id/tv_rating"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_rating" />
+
+                <View
+                    android:id="@+id/vertical_line1"
+                    android:layout_width="1dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/view_line"
+                    app:layout_constraintBottom_toTopOf="@+id/horizontal_line3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_popularity"
+                    style="@style/poppins_medium14"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center"
+                    android:text="@string/popularity"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/vertical_line1"
+                    app:layout_constraintTop_toTopOf="@+id/vertical_line1" />
+
+                <TextView
+                    android:id="@+id/detail_popularity"
+                    style="@style/poppins_regular12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/popularity"
+                    android:textColor="@color/colorTextBlack"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_popularity"
+                    app:layout_constraintStart_toStartOf="@+id/tv_popularity"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_popularity" />
+
+                <TextView
+                    android:id="@+id/detail_genre"
+                    style="@style/poppins_regular12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/genre"
+                    android:textColor="@color/colorTextBlack"
+                    app:layout_constraintEnd_toEndOf="@+id/detail_date"
+                    app:layout_constraintStart_toStartOf="@+id/tv_date"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_lang" />
+
+                <View
+                    android:id="@+id/horizontal_line3"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@drawable/view_line"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="140dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="241dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="131dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <TextView
+                    android:id="@+id/tv_overview"
+                    style="@style/poppins_medium14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/overview"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/detail_overview"
+                    style="@style/poppins_regular12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/overview"
+                    android:textColor="@color/colorTextBlack"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_overview"
+                    app:layout_constraintStart_toStartOf="@+id/tv_overview"
+                    app:layout_constraintTop_toBottomOf="@id/tv_overview" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/view_line"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/detail_overview" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/view_line"
+                    app:layout_constraintTop_toBottomOf="@id/detail_overview" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="221dp" />
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
