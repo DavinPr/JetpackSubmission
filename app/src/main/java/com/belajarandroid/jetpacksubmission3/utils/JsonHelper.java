@@ -60,6 +60,7 @@ public class JsonHelper {
                     String popularity = String.valueOf(movie.getDouble("popularity"));
                     String overview = movie.getString("overview");
                     String lang = movie.getString("original_language");
+                    String langFormatted = lang.substring(0, 1).toUpperCase() + lang.substring(1);
 
                     //get Genre Name
                     JSONArray genreArray = movie.getJSONArray("genre_ids");
@@ -70,7 +71,7 @@ public class JsonHelper {
                     }
                     String genre = Arrays.toString(listGenre).replace("[", "").replace("]", "");
 
-                    MovieResponse movieResponse = new MovieResponse(id, poster, backdrop, title, date, rate, genre, lang, overview, popularity);
+                    MovieResponse movieResponse = new MovieResponse(id, poster, backdrop, title, date, rate, genre, langFormatted, overview, popularity);
                     list.add(movieResponse);
                 }
             }
@@ -103,6 +104,7 @@ public class JsonHelper {
                     String popularity = String.valueOf(show.getDouble("popularity"));
                     String overview = show.getString("overview");
                     String lang = show.getString("original_language");
+                    String langFormatted = lang.substring(0, 1).toUpperCase() + lang.substring(1);
 
                     //get Genre Name
                     JSONArray genreArray = show.getJSONArray("genre_ids");
@@ -114,7 +116,7 @@ public class JsonHelper {
                     }
                     String genre = Arrays.toString(listGenre).replace("[", "").replace("]", "");
 
-                    ShowResponse showResponse = new ShowResponse(id, poster, backdrop, title, date, rate, genre, lang, overview, popularity);
+                    ShowResponse showResponse = new ShowResponse(id, poster, backdrop, title, date, rate, genre, langFormatted, overview, popularity);
                     list.add(showResponse);
                 }
             }

@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/background_button"
         android:contentDescription="@null"
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +36,7 @@
         android:background="@drawable/ic_favorite_set"
         android:textOff="@null"
         android:textOn="@null"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/detail_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/detail_back" />
@@ -183,7 +184,7 @@
             android:layout_marginStart="8dp"
             android:background="@drawable/background_image"
             android:contentDescription="@string/content_image"
-            android:elevation="10dp"
+            android:elevation="20dp"
             android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -6,6 +6,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -26,6 +28,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView tvToolbarTitle;
     private ImageView imgPoster, imgBackdrop;
     private ImageButton btnBack;
+    private ToggleButton toggleFavorite;
     private ProgressBar progressBar;
 
     @Override
@@ -33,7 +36,21 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        //data
+        init();
+        String detailType = getIntent().getStringExtra(EXTRA_TYPE);
+        String detailId = getIntent().getStringExtra(EXTRA_ID);
+        getData(detailType, detailId);
+
+        toggleFavorite.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void init() {
         tvTitle = findViewById(R.id.detail_title);
         tvDate = findViewById(R.id.detail_date);
         tvRating = findViewById(R.id.detail_rating);
@@ -45,34 +62,33 @@ public class DetailActivity extends AppCompatActivity {
         imgPoster = findViewById(R.id.detail_poster);
         imgBackdrop = findViewById(R.id.detail_backdrop);
         btnBack = findViewById(R.id.detail_back);
+        toggleFavorite = findViewById(R.id.favorite);
         progressBar = findViewById(R.id.progress_bar);
+    }
 
-        String detailType = getIntent().getStringExtra(EXTRA_TYPE);
-        String detailId = getIntent().getStringExtra(EXTRA_ID);
+    private void getData(String type, String id) {
         ViewModelFactory factory = ViewModelFactory.getInstance(this);
         DetailViewModel viewModel = new ViewModelProvider(this, factory).get(DetailViewModel.class);
 
-        if (detailType != null) {
-            if (detailType.equals("movie")) {
-                if (detailId != null) {
+        if (type != null) {
+            if (type.equals("movie")) {
+                if (id != null) {
                     progressBar.setVisibility(View.VISIBLE);
-                    viewModel.getDetail(detailId, detailType).observe(this, filmEntity -> {
+                    viewModel.getDetail(id, type).observe(this, filmEntity -> {
                         progressBar.setVisibility(View.GONE);
                         setDetailData(filmEntity);
                     });
                 }
-            } else if (detailType.equals("tv")) {
-                if (detailId != null) {
+            } else if (type.equals("tv")) {
+                if (id != null) {
                     progressBar.setVisibility(View.VISIBLE);
-                    viewModel.getDetail(detailId, detailType).observe(this, filmEntity -> {
+                    viewModel.getDetail(id, type).observe(this, filmEntity -> {
                         progressBar.setVisibility(View.GONE);
                         setDetailData(filmEntity);
                     });
                 }
             }
         }
-
-
     }
 
     private void setDetailData(FilmEntity filmEntity) {

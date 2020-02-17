@@ -6,18 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".ui.favorite.FavoriteFragment">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ToggleButton
         android:id="@+id/toggle_movies"
         android:layout_width="100dp"
         android:layout_height="36dp"
-        android:background="@drawable/background_toggle_film"
-        android:text="@string/movies"
-        android:textOff="@null"
-        android:textOn="@null"
-        android:checked="true"
-
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/background_toggle_film"
+        android:checked="true"
+        android:text="@string/movies"
+
+        android:textOff="@null"
+        android:textOn="@null"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,13 +35,23 @@
         android:id="@+id/toggle_show"
         android:layout_width="100dp"
         android:layout_height="36dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/background_toggle_film"
         android:text="@string/tv_shows"
         android:textOff="@null"
         android:textOn="@null"
-        android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/toggle_movies"
         app:layout_constraintTop_toTopOf="@+id/toggle_movies" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_favorites"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggle_movies"
+        tools:listitem="@layout/item_list" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
