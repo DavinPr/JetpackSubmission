@@ -23,6 +23,7 @@ public class DetailActivity extends AppCompatActivity {
     public static final String EXTRA_TYPE = "extra_type";
     private TextView tvTitle, tvDate, tvRating, tvPopularity, tvOverview;
     private TextView tvGenre, tvLang;
+    private TextView tvToolbarTitle;
     private ImageView imgPoster, imgBackdrop;
     private ImageButton btnBack;
     private ProgressBar progressBar;
@@ -40,6 +41,7 @@ public class DetailActivity extends AppCompatActivity {
         tvOverview = findViewById(R.id.detail_overview);
         tvGenre = findViewById(R.id.detail_genre);
         tvLang = findViewById(R.id.detail_lang);
+        tvToolbarTitle = findViewById(R.id.toolbar_title);
         imgPoster = findViewById(R.id.detail_poster);
         imgBackdrop = findViewById(R.id.detail_backdrop);
         btnBack = findViewById(R.id.detail_back);
@@ -79,6 +81,7 @@ public class DetailActivity extends AppCompatActivity {
         imgBackdrop.setAlpha(0.8f);
 
         tvTitle.setText(filmEntity.getFilmTitle());
+        tvToolbarTitle.setText(filmEntity.getFilmTitle());
         tvDate.setText(filmEntity.getFilmDate());
         tvRating.setText(filmEntity.getFilmRate());
         tvPopularity.setText(filmEntity.getFilmPopularity());

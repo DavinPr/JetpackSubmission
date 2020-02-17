@@ -10,13 +10,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.belajarandroid.jetpacksubmission3.R;
+import com.belajarandroid.jetpacksubmission3.ui.favorite.FavoriteFragment;
 import com.belajarandroid.jetpacksubmission3.ui.movie.MovieFragment;
 import com.belajarandroid.jetpacksubmission3.ui.show.ShowFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private final int[] TAB_TITLES = new int[]{R.string.movies, R.string.tv_shows};
+    private final int[] TAB_TITLES = new int[]{R.string.movies, R.string.tv_shows, R.string.favorites};
     private final Context context;
 
     SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -32,6 +33,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return new MovieFragment();
             case 1:
                 return new ShowFragment();
+            case 2:
+                return new FavoriteFragment();
             default:
                 return new Fragment();
         }
@@ -45,6 +48,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 }

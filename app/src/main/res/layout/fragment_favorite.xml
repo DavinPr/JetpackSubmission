@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.favorite.FavoriteFragment">
+
+    <ToggleButton
+        android:id="@+id/toggle_movies"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:background="@drawable/background_toggle_film"
+        android:text="@string/movies"
+        android:textOff="@null"
+        android:textOn="@null"
+        android:checked="true"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/toggle_show"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:background="@drawable/background_toggle_film"
+        android:text="@string/tv_shows"
+        android:textOff="@null"
+        android:textOn="@null"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/toggle_movies"
+        app:layout_constraintTop_toTopOf="@+id/toggle_movies" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
