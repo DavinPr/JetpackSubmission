@@ -5,9 +5,15 @@ import android.os.Parcelable;
 
 public class ShowResponse implements Parcelable {
     private String showId;
-    private String showPoster, showBackdrop;
-    private String showTitle, showDate, showRate, showGenre, showLang;
-    private String showOverview, showPopularity;
+    private String showPoster;
+    private String showBackdrop;
+    private String showTitle;
+    private String showDate;
+    private String showRate;
+    private String showGenre;
+    private String showLang;
+    private String showOverview;
+    private String showPopularity;
 
     public ShowResponse(String showId, String showPoster, String showBackdrop, String showTitle, String showDate, String showRate, String showGenre, String showLang, String showOverview, String showPopularity) {
         this.showId = showId;

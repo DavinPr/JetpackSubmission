@@ -5,7 +5,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.rule.ActivityTestRule;
 
 import com.belajarandroid.jetpacksubmission3.R;
-import com.belajarandroid.jetpacksubmission3.data.FilmEntity;
+import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.utils.DataDummy;
 import com.belajarandroid.jetpacksubmission3.utils.EspressoIdlingResource;
 

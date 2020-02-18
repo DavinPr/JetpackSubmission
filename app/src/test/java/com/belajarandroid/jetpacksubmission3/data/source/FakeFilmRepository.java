@@ -4,7 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.belajarandroid.jetpacksubmission3.data.FilmEntity;
+import com.belajarandroid.jetpacksubmission3.data.FilmDataSource;
+import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.data.source.remote.RemoteDataSource;
 import com.belajarandroid.jetpacksubmission3.data.source.remote.response.MovieResponse;
 import com.belajarandroid.jetpacksubmission3.data.source.remote.response.ShowResponse;

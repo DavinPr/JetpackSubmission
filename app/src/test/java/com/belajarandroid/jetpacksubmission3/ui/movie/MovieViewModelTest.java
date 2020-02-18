@@ -4,8 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-import com.belajarandroid.jetpacksubmission3.data.FilmEntity;
-import com.belajarandroid.jetpacksubmission3.data.source.FilmRepository;
+import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
+import com.belajarandroid.jetpacksubmission3.data.FilmRepository;
 import com.belajarandroid.jetpacksubmission3.utils.DataDummy;
 
 import org.junit.Before;

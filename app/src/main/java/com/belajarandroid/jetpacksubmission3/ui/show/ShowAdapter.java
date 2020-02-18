@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.belajarandroid.jetpacksubmission3.BuildConfig;
 import com.belajarandroid.jetpacksubmission3.R;
-import com.belajarandroid.jetpacksubmission3.data.FilmEntity;
+import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.ui.detail.DetailActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -49,7 +49,10 @@ public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ShowViewHolder
 
     class ShowViewHolder extends RecyclerView.ViewHolder {
         ImageView posterShow;
-        TextView titleShow, dateShow, genreShow, rateShow;
+        TextView titleShow;
+        TextView dateShow;
+        TextView genreShow;
+        TextView rateShow;
 
         ShowViewHolder(@NonNull View itemView) {
             super(itemView);

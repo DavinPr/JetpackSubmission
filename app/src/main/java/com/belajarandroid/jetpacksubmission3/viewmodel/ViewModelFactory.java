@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.belajarandroid.jetpacksubmission3.data.source.FilmRepository;
+import com.belajarandroid.jetpacksubmission3.data.FilmRepository;
 import com.belajarandroid.jetpacksubmission3.di.Injection;
 import com.belajarandroid.jetpacksubmission3.ui.detail.DetailViewModel;
 import com.belajarandroid.jetpacksubmission3.ui.movie.MovieViewModel;

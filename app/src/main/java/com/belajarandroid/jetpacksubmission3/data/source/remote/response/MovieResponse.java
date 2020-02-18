@@ -5,9 +5,15 @@ import android.os.Parcelable;
 
 public class MovieResponse implements Parcelable {
     private String movieId;
-    private String moviePoster, movieBackdrop;
-    private String movieTitle, movieDate, movieRate, movieGenre, movieLang;
-    private String movieOverview, moviePopularity;
+    private String moviePoster;
+    private String movieBackdrop;
+    private String movieTitle;
+    private String movieDate;
+    private String movieRate;
+    private String movieGenre;
+    private String movieLang;
+    private String movieOverview;
+    private String moviePopularity;
 
     public MovieResponse(String movieId, String moviePoster, String movieBackdrop, String movieTitle, String movieDate, String movieRate, String movieGenre, String movieLang, String movieOverview, String moviePopularity) {
         this.movieId = movieId;

@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.belajarandroid.jetpacksubmission3.BuildConfig;
 import com.belajarandroid.jetpacksubmission3.R;
-import com.belajarandroid.jetpacksubmission3.data.FilmEntity;
+import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.viewmodel.ViewModelFactory;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -23,10 +23,16 @@ public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_ID = "extra_id";
     public static final String EXTRA_TYPE = "extra_type";
-    private TextView tvTitle, tvDate, tvRating, tvPopularity, tvOverview;
-    private TextView tvGenre, tvLang;
+    private TextView tvTitle;
+    private TextView tvDate;
+    private TextView tvRating;
+    private TextView tvPopularity;
+    private TextView tvOverview;
+    private TextView tvGenre;
+    private TextView tvLang;
     private TextView tvToolbarTitle;
-    private ImageView imgPoster, imgBackdrop;
+    private ImageView imgPoster;
+    private ImageView imgBackdrop;
     private ImageButton btnBack;
     private ToggleButton toggleFavorite;
     private ProgressBar progressBar;
@@ -42,9 +48,9 @@ public class DetailActivity extends AppCompatActivity {
         getData(detailType, detailId);
 
         toggleFavorite.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked){
+            if (isChecked) {
                 Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show();
             }
         });
@@ -71,20 +77,51 @@ public class DetailActivity extends AppCompatActivity {
         DetailViewModel viewModel = new ViewModelProvider(this, factory).get(DetailViewModel.class);
 
         if (type != null) {
+            viewModel.setType(type);
             if (type.equals("movie")) {
                 if (id != null) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    viewModel.getDetail(id, type).observe(this, filmEntity -> {
-                        progressBar.setVisibility(View.GONE);
-                        setDetailData(filmEntity);
+                    viewModel.setFilmId(id);
+                    viewModel.getDetail.observe(this, filmEntity -> {
+                        if (filmEntity != null){
+                            switch (filmEntity.status){
+                                case LOADING:
+                                    progressBar.setVisibility(View.VISIBLE);
+                                    break;
+                                case SUCCESS:
+                                    if (filmEntity.data != null) {
+                                        progressBar.setVisibility(View.GONE);
+                                        setDetailData(filmEntity.data);
+                                    }
+                                    break;
+                                case ERROR:
+                                    progressBar.setVisibility(View.GONE);
+                                    Toast.makeText(this, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
+                                    break;
+                            }
+                        }
                     });
                 }
             } else if (type.equals("tv")) {
                 if (id != null) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    viewModel.getDetail(id, type).observe(this, filmEntity -> {
-                        progressBar.setVisibility(View.GONE);
-                        setDetailData(filmEntity);
+                    viewModel.setFilmId(id);
+                    viewModel.getDetail.observe(this, filmEntity -> {
+                        if (filmEntity != null){
+                            switch (filmEntity.status){
+                                case LOADING:
+                                    progressBar.setVisibility(View.VISIBLE);
+                                    break;
+                                case SUCCESS:
+                                    if (filmEntity.data != null) {
+                                        progressBar.setVisibility(View.GONE);
+                                        setDetailData(filmEntity.data);
+                                    }
+                                    break;
+                                case ERROR:
+                                    progressBar.setVisibility(View.GONE);
+                                    Toast.makeText(this, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
+                                    break;
+                            }
+                        }
                     });
                 }
             }

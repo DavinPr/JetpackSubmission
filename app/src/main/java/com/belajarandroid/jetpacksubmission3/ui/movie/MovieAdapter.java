@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.belajarandroid.jetpacksubmission3.BuildConfig;
 import com.belajarandroid.jetpacksubmission3.R;
-import com.belajarandroid.jetpacksubmission3.data.FilmEntity;
+import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.ui.detail.DetailActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -50,7 +50,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     class MovieViewHolder extends RecyclerView.ViewHolder {
         ImageView imgMovie;
-        TextView titleMovie, dateMovie, rateMovie, genreMovie;
+        TextView titleMovie;
+        TextView dateMovie;
+        TextView rateMovie;
+        TextView genreMovie;
 
         MovieViewHolder(@NonNull View itemView) {
             super(itemView);

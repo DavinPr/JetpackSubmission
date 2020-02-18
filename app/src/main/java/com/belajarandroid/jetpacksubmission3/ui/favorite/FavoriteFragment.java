@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.ToggleButton;
+import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,7 +20,8 @@ import com.belajarandroid.jetpacksubmission3.R;
 public class FavoriteFragment extends Fragment {
     private RecyclerView rvFavorites;
     private ProgressBar progressBar;
-    private ToggleButton tgMovie, tgShow;
+    private RadioButton rbMovies;
+    private RadioButton rbShows;
 
 
     public FavoriteFragment() {
@@ -40,23 +41,23 @@ public class FavoriteFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvFavorites = view.findViewById(R.id.rv_favorites);
         progressBar = view.findViewById(R.id.progress_bar);
-        tgMovie = view.findViewById(R.id.toggle_movies);
-        tgShow = view.findViewById(R.id.toggle_show);
+        rbMovies = view.findViewById(R.id.rb_movies);
+        rbShows = view.findViewById(R.id.rb_shows);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        tgMovie.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        rbMovies.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                tgShow.setChecked(false);
+                rbShows.setChecked(false);
             }
         });
 
-        tgShow.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        rbShows.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                tgMovie.setChecked(false);
+                rbMovies.setChecked(false);
             }
         });
     }

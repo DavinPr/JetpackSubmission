@@ -2,7 +2,7 @@ package com.belajarandroid.jetpacksubmission3.data.source;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
-import com.belajarandroid.jetpacksubmission3.data.FilmEntity;
+import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.data.source.remote.RemoteDataSource;
 import com.belajarandroid.jetpacksubmission3.data.source.remote.response.MovieResponse;
 import com.belajarandroid.jetpacksubmission3.data.source.remote.response.ShowResponse;

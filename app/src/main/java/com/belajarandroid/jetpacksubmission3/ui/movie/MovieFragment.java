@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,11 +54,23 @@ public class MovieFragment extends Fragment {
             MovieViewModel viewModel = new ViewModelProvider(this, factory).get(MovieViewModel.class);
 
             MovieAdapter adapter = new MovieAdapter();
-            progressBar.setVisibility(View.VISIBLE);
             viewModel.getMovie().observe(this, filmEntities -> {
-                progressBar.setVisibility(View.GONE);
-                adapter.setMovie(filmEntities);
-                adapter.notifyDataSetChanged();
+                if (filmEntities != null){
+                    switch (filmEntities.status){
+                        case LOADING:
+                            progressBar.setVisibility(View.VISIBLE);
+                            break;
+                        case SUCCESS:
+                            progressBar.setVisibility(View.GONE);
+                            adapter.setMovie(filmEntities.data);
+                            adapter.notifyDataSetChanged();
+                            break;
+                        case ERROR:
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(getContext(), "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
             });
 
             rvMovies.setLayoutManager(new LinearLayoutManager(getContext()));
