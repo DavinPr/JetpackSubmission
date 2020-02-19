@@ -1,20 +1,19 @@
 package com.belajarandroid.jetpacksubmission3.data;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.PagedList;
 
 import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.vo.Resource;
 
-import java.util.List;
-
 public interface FilmDataSource {
-    LiveData<Resource<List<FilmEntity>>> getMovie();
+    LiveData<Resource<PagedList<FilmEntity>>> getMovie();
 
-    LiveData<Resource<List<FilmEntity>>> getShow();
+    LiveData<Resource<PagedList<FilmEntity>>> getShow();
 
-    LiveData<List<FilmEntity>> getFavoritedMovie();
+    LiveData<PagedList<FilmEntity>> getFavoritedMovie();
 
-    LiveData<List<FilmEntity>> getFavoritedShow();
+    LiveData<PagedList<FilmEntity>> getFavoritedShow();
 
     LiveData<Resource<FilmEntity>> getDetailMovie(String movieId);
 

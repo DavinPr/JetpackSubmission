@@ -2,6 +2,7 @@ package com.belajarandroid.jetpacksubmission3.ui.movie;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.paging.PagedList;
 
 import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.data.FilmRepository;
@@ -17,7 +18,7 @@ public class MovieViewModel extends ViewModel {
         this.filmRepository = filmRepository;
     }
 
-    LiveData<Resource<List<FilmEntity>>> getMovie() {
+    LiveData<Resource<PagedList<FilmEntity>>> getMovie() {
         return filmRepository.getMovie();
     }
 }

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.belajarandroid.jetpacksubmission3.data.FilmRepository;
 import com.belajarandroid.jetpacksubmission3.di.Injection;
 import com.belajarandroid.jetpacksubmission3.ui.detail.DetailViewModel;
+import com.belajarandroid.jetpacksubmission3.ui.favorite.FavoriteViewModel;
 import com.belajarandroid.jetpacksubmission3.ui.movie.MovieViewModel;
 import com.belajarandroid.jetpacksubmission3.ui.show.ShowViewModel;
 
@@ -40,6 +41,8 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
             return (T) new MovieViewModel(filmRepository);
         } else if (modelClass.isAssignableFrom(ShowViewModel.class)) {
             return (T) new ShowViewModel(filmRepository);
+        } else if (modelClass.isAssignableFrom(FavoriteViewModel.class)){
+            return (T) new FavoriteViewModel(filmRepository);
         } else if (modelClass.isAssignableFrom(DetailViewModel.class)) {
             return (T) new DetailViewModel(filmRepository);
         }

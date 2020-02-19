@@ -10,14 +10,17 @@ import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.belajarandroid.jetpacksubmission3.R;
+import com.belajarandroid.jetpacksubmission3.viewmodel.ViewModelFactory;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoriteFragment extends Fragment {
+public class FavoriteFragment extends Fragment implements FavoriteFragmentCallback{
     private RecyclerView rvFavorites;
     private ProgressBar progressBar;
     private RadioButton rbMovies;
@@ -48,18 +51,44 @@ public class FavoriteFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        if (getActivity() != null){
+            ViewModelFactory factory = ViewModelFactory.getInstance(getActivity());
+            FavoriteViewModel viewModel = new ViewModelProvider(this, factory).get(FavoriteViewModel.class);
 
-        rbMovies.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                rbShows.setChecked(false);
-            }
-        });
+            FavoritesAdapter adapter = new FavoritesAdapter(this);
+            progressBar.setVisibility(View.VISIBLE);
+            viewModel.getMovieFavorites().observe(this, filmEntities -> {
+                progressBar.setVisibility(View.GONE);
+                adapter.submitList(filmEntities);
+                adapter.notifyDataSetChanged();
+            });
 
-        rbShows.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                rbMovies.setChecked(false);
-            }
-        });
+            rbMovies.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked) {
+                    rbShows.setChecked(false);
+                    viewModel.getMovieFavorites().observe(this, filmEntities -> {
+                        progressBar.setVisibility(View.GONE);
+                        adapter.submitList(filmEntities);
+                        adapter.notifyDataSetChanged();
+                    });
+                }
+            });
+
+            rbShows.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked) {
+                    rbMovies.setChecked(false);
+                    viewModel.getShowFavorites().observe(this, filmEntities -> {
+                        progressBar.setVisibility(View.GONE);
+                        adapter.submitList(filmEntities);
+                        adapter.notifyDataSetChanged();
+                    });
+                }
+            });
+
+            rvFavorites.setLayoutManager(new LinearLayoutManager(getContext()));
+            rvFavorites.setHasFixedSize(true);
+            rvFavorites.setAdapter(adapter);
+        }
     }
 
 

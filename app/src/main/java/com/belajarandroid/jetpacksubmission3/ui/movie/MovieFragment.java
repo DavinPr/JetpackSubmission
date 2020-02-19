@@ -55,14 +55,14 @@ public class MovieFragment extends Fragment {
 
             MovieAdapter adapter = new MovieAdapter();
             viewModel.getMovie().observe(this, filmEntities -> {
-                if (filmEntities != null){
-                    switch (filmEntities.status){
+                if (filmEntities != null) {
+                    switch (filmEntities.status) {
                         case LOADING:
                             progressBar.setVisibility(View.VISIBLE);
                             break;
                         case SUCCESS:
                             progressBar.setVisibility(View.GONE);
-                            adapter.setMovie(filmEntities.data);
+                            adapter.submitList(filmEntities.data);
                             adapter.notifyDataSetChanged();
                             break;
                         case ERROR:

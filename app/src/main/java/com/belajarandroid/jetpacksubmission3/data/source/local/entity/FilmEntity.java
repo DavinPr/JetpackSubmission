@@ -34,6 +34,7 @@ public class FilmEntity {
     @ColumnInfo(name = "favorited")
     private boolean favorited = false;
 
+    @NonNull
     public String getFilmId() {
         return filmId;
     }
@@ -86,7 +87,7 @@ public class FilmEntity {
         this.favorited = favorited;
     }
 
-    public FilmEntity(String filmId,
+    public FilmEntity(@NonNull String filmId,
                       String filmType,
                       String filmPoster,
                       String filmBackdrop,

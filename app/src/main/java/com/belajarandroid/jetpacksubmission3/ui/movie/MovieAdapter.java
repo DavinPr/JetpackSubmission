@@ -1,5 +1,6 @@
 package com.belajarandroid.jetpacksubmission3.ui.movie;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.paging.PagedListAdapter;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.belajarandroid.jetpacksubmission3.BuildConfig;
@@ -17,18 +20,25 @@ import com.belajarandroid.jetpacksubmission3.ui.detail.DetailActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-import java.util.ArrayList;
-import java.util.List;
+public class MovieAdapter extends PagedListAdapter<FilmEntity, MovieAdapter.MovieViewHolder> {
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
-
-    private List<FilmEntity> listMovie = new ArrayList<>();
-
-    void setMovie(List<FilmEntity> list) {
-        if (listMovie == null) return;
-        listMovie.clear();
-        listMovie.addAll(list);
+    MovieAdapter() {
+        super(DIFF_CALLBACK);
     }
+
+    private static DiffUtil.ItemCallback<FilmEntity> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<FilmEntity>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull FilmEntity oldItem, @NonNull FilmEntity newItem) {
+                    return oldItem.getFilmId().equals(newItem.getFilmDate());
+                }
+
+                @SuppressLint("DiffUtilEquals")
+                @Override
+                public boolean areContentsTheSame(@NonNull FilmEntity oldItem, @NonNull FilmEntity newItem) {
+                    return oldItem.equals(newItem);
+                }
+            };
 
     @NonNull
     @Override
@@ -39,13 +49,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MovieAdapter.MovieViewHolder holder, int position) {
-        FilmEntity entity = listMovie.get(position);
-        holder.bind(entity);
-    }
-
-    @Override
-    public int getItemCount() {
-        return listMovie.size();
+        FilmEntity entity = getItem(position);
+        if (entity != null) {
+            holder.bind(entity);
+        }
     }
 
     class MovieViewHolder extends RecyclerView.ViewHolder {

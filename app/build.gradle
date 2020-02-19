@@ -55,4 +55,5 @@ dependencies {
     implementation "com.loopj.android:android-async-http:$asyncHttpVersion"
     implementation "androidx.room:room-runtime:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
 }

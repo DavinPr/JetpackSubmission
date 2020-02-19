@@ -1,6 +1,7 @@
 package com.belajarandroid.jetpacksubmission3.data.source.local;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.DataSource;
 
 import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.data.source.local.room.FilmDao;
@@ -22,19 +23,19 @@ public class LocalDataSource {
         return INSTANCE;
     }
 
-    public LiveData<List<FilmEntity>> getMovies() {
+    public DataSource.Factory<Integer, FilmEntity> getMovies() {
         return filmDao.getMovie();
     }
 
-    public LiveData<List<FilmEntity>> getShows() {
+    public DataSource.Factory<Integer, FilmEntity> getShows() {
         return filmDao.getShow();
     }
 
-    public LiveData<List<FilmEntity>> getMovieFavorites() {
+    public DataSource.Factory<Integer, FilmEntity> getMovieFavorites() {
         return filmDao.getMovieFavorite();
     }
 
-    public LiveData<List<FilmEntity>> getShowFavorites(){
+    public DataSource.Factory<Integer, FilmEntity> getShowFavorites(){
         return filmDao.getShowFavorite();
     }
 

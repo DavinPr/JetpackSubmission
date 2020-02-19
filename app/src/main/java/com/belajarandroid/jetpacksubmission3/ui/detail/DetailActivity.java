@@ -49,9 +49,9 @@ public class DetailActivity extends AppCompatActivity {
 
         toggleFavorite.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
+                setFavoriteState(true);
             } else {
-                Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show();
+                setFavoriteState(false);
             }
         });
     }
@@ -153,5 +153,15 @@ public class DetailActivity extends AppCompatActivity {
                 .into(imgBackdrop);
 
         btnBack.setOnClickListener(v -> finish());
+    }
+
+    private void setFavoriteState(boolean state){
+        if (state){
+            toggleFavorite.setChecked(true);
+            Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
+        }else {
+            toggleFavorite.setChecked(false);
+            Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show();
+        }
     }
 }

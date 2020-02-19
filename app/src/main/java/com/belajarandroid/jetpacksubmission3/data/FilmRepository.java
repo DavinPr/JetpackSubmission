@@ -2,6 +2,8 @@ package com.belajarandroid.jetpacksubmission3.data;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
 import com.belajarandroid.jetpacksubmission3.data.source.local.LocalDataSource;
 import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
@@ -41,16 +43,21 @@ public class FilmRepository implements FilmDataSource {
     }
 
     @Override
-    public LiveData<Resource<List<FilmEntity>>> getMovie() {
-        return new NetworkBoundResource<List<FilmEntity>, List<MovieResponse>>(appExecutors) {
+    public LiveData<Resource<PagedList<FilmEntity>>> getMovie() {
+        return new NetworkBoundResource<PagedList<FilmEntity>, List<MovieResponse>>(appExecutors) {
 
             @Override
-            protected LiveData<List<FilmEntity>> loadFromDB() {
-                return localDataSource.getMovies();
+            protected LiveData<PagedList<FilmEntity>> loadFromDB() {
+                PagedList.Config config = new PagedList.Config.Builder()
+                        .setEnablePlaceholders(false)
+                        .setInitialLoadSizeHint(20)
+                        .setPageSize(20)
+                        .build();
+                return new LivePagedListBuilder<>(localDataSource.getMovies(), config).build();
             }
 
             @Override
-            protected Boolean shouldFetch(List<FilmEntity> data) {
+            protected Boolean shouldFetch(PagedList<FilmEntity> data) {
                 return (data == null) || (data.size() == 0);
             }
 
@@ -83,16 +90,21 @@ public class FilmRepository implements FilmDataSource {
     }
 
     @Override
-    public LiveData<Resource<List<FilmEntity>>> getShow() {
-        return new NetworkBoundResource<List<FilmEntity>, List<ShowResponse>>(appExecutors) {
+    public LiveData<Resource<PagedList<FilmEntity>>> getShow() {
+        return new NetworkBoundResource<PagedList<FilmEntity>, List<ShowResponse>>(appExecutors) {
 
             @Override
-            protected LiveData<List<FilmEntity>> loadFromDB() {
-                return localDataSource.getShows();
+            protected LiveData<PagedList<FilmEntity>> loadFromDB() {
+                PagedList.Config config = new PagedList.Config.Builder()
+                        .setEnablePlaceholders(false)
+                        .setInitialLoadSizeHint(20)
+                        .setPageSize(20)
+                        .build();
+                return new LivePagedListBuilder<>(localDataSource.getShows(), config).build();
             }
 
             @Override
-            protected Boolean shouldFetch(List<FilmEntity> data) {
+            protected Boolean shouldFetch(PagedList<FilmEntity> data) {
                 return (data == null) || (data.size() == 0);
             }
 
@@ -125,13 +137,23 @@ public class FilmRepository implements FilmDataSource {
     }
 
     @Override
-    public LiveData<List<FilmEntity>> getFavoritedMovie() {
-        return localDataSource.getMovieFavorites();
+    public LiveData<PagedList<FilmEntity>> getFavoritedMovie() {
+        PagedList.Config config = new PagedList.Config.Builder()
+                .setEnablePlaceholders(false)
+                .setInitialLoadSizeHint(20)
+                .setPageSize(20)
+                .build();
+        return new LivePagedListBuilder<>(localDataSource.getMovieFavorites(), config).build();
     }
 
     @Override
-    public LiveData<List<FilmEntity>> getFavoritedShow() {
-        return localDataSource.getShowFavorites();
+    public LiveData<PagedList<FilmEntity>> getFavoritedShow() {
+        PagedList.Config config = new PagedList.Config.Builder()
+                .setEnablePlaceholders(false)
+                .setInitialLoadSizeHint(20)
+                .setPageSize(20)
+                .build();
+        return new LivePagedListBuilder<>(localDataSource.getShowFavorites(), config).build();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.belajarandroid.jetpacksubmission3.ui.show;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.paging.PagedListAdapter;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.belajarandroid.jetpacksubmission3.BuildConfig;
@@ -17,17 +20,25 @@ import com.belajarandroid.jetpacksubmission3.ui.detail.DetailActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-import java.util.ArrayList;
-import java.util.List;
+public class ShowAdapter extends PagedListAdapter<FilmEntity, ShowAdapter.ShowViewHolder> {
 
-public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ShowViewHolder> {
-    private List<FilmEntity> list = new ArrayList<>();
-
-    void setShow(List<FilmEntity> listShow) {
-        if (listShow == null) return;
-        list.clear();
-        list.addAll(listShow);
+    ShowAdapter() {
+        super(DIFF_CALLBACK);
     }
+
+    private static DiffUtil.ItemCallback<FilmEntity> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<FilmEntity>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull FilmEntity oldItem, @NonNull FilmEntity newItem) {
+                    return oldItem.getFilmId().equals(newItem.getFilmId());
+                }
+
+                @SuppressLint("DiffUtilEquals")
+                @Override
+                public boolean areContentsTheSame(@NonNull FilmEntity oldItem, @NonNull FilmEntity newItem) {
+                    return oldItem.equals(newItem);
+                }
+            };
 
     @NonNull
     @Override
@@ -38,13 +49,10 @@ public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ShowViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ShowAdapter.ShowViewHolder holder, int position) {
-        FilmEntity showEntity = list.get(position);
-        holder.bind(showEntity);
-    }
-
-    @Override
-    public int getItemCount() {
-        return list.size();
+        FilmEntity showEntity = getItem(position);
+        if (showEntity != null) {
+            holder.bind(showEntity);
+        }
     }
 
     class ShowViewHolder extends RecyclerView.ViewHolder {

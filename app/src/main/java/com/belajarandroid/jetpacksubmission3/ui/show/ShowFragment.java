@@ -55,14 +55,14 @@ public class ShowFragment extends Fragment {
         ViewModelFactory factory = ViewModelFactory.getInstance(getActivity());
         ShowViewModel viewModel = new ViewModelProvider(this, factory).get(ShowViewModel.class);
         viewModel.getShow().observe(this, filmEntities -> {
-            if (filmEntities != null){
-                switch (filmEntities.status){
+            if (filmEntities != null) {
+                switch (filmEntities.status) {
                     case LOADING:
                         progressBar.setVisibility(View.VISIBLE);
                         break;
                     case SUCCESS:
                         progressBar.setVisibility(View.GONE);
-                        showAdapter.setShow(filmEntities.data);
+                        showAdapter.submitList(filmEntities.data);
                         showAdapter.notifyDataSetChanged();
                         break;
                     case ERROR:
