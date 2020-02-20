@@ -1,15 +1,17 @@
 package com.belajarandroid.jetpacksubmission3.ui.detail;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.belajarandroid.jetpacksubmission3.BuildConfig;
@@ -30,30 +32,65 @@ public class DetailActivity extends AppCompatActivity {
     private TextView tvOverview;
     private TextView tvGenre;
     private TextView tvLang;
-    private TextView tvToolbarTitle;
     private ImageView imgPoster;
     private ImageView imgBackdrop;
-    private ImageButton btnBack;
-    private ToggleButton toggleFavorite;
     private ProgressBar progressBar;
+    private DetailViewModel viewModel;
+    private Toolbar toolbar;
+    private Menu menu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        init();
         String detailType = getIntent().getStringExtra(EXTRA_TYPE);
         String detailId = getIntent().getStringExtra(EXTRA_ID);
+
+        init();
+        initViewModel();
         getData(detailType, detailId);
 
-        toggleFavorite.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                setFavoriteState(true);
-            } else {
-                setFavoriteState(false);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_detail, menu);
+        this.menu = menu;
+        viewModel.getDetail.observe(this, filmEntity -> {
+            if (filmEntity != null) {
+                switch (filmEntity.status) {
+                    case LOADING:
+                        progressBar.setVisibility(View.VISIBLE);
+                        break;
+                    case SUCCESS:
+                        if (filmEntity.data != null) {
+                            progressBar.setVisibility(View.GONE);
+                            boolean state = filmEntity.data.isFavorited();
+                            setFavoriteState(state);
+                        }
+                        break;
+                    case ERROR:
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
+                        break;
+                }
             }
         });
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_favorite) {
+            viewModel.setFavorite();
+            Toast.makeText(this, "Added to favorite!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void init() {
@@ -64,17 +101,13 @@ public class DetailActivity extends AppCompatActivity {
         tvOverview = findViewById(R.id.detail_overview);
         tvGenre = findViewById(R.id.detail_genre);
         tvLang = findViewById(R.id.detail_lang);
-        tvToolbarTitle = findViewById(R.id.toolbar_title);
         imgPoster = findViewById(R.id.detail_poster);
         imgBackdrop = findViewById(R.id.detail_backdrop);
-        btnBack = findViewById(R.id.detail_back);
-        toggleFavorite = findViewById(R.id.favorite);
         progressBar = findViewById(R.id.progress_bar);
+        toolbar = findViewById(R.id.toolbar);
     }
 
     private void getData(String type, String id) {
-        ViewModelFactory factory = ViewModelFactory.getInstance(this);
-        DetailViewModel viewModel = new ViewModelProvider(this, factory).get(DetailViewModel.class);
 
         if (type != null) {
             viewModel.setType(type);
@@ -82,8 +115,8 @@ public class DetailActivity extends AppCompatActivity {
                 if (id != null) {
                     viewModel.setFilmId(id);
                     viewModel.getDetail.observe(this, filmEntity -> {
-                        if (filmEntity != null){
-                            switch (filmEntity.status){
+                        if (filmEntity != null) {
+                            switch (filmEntity.status) {
                                 case LOADING:
                                     progressBar.setVisibility(View.VISIBLE);
                                     break;
@@ -105,8 +138,8 @@ public class DetailActivity extends AppCompatActivity {
                 if (id != null) {
                     viewModel.setFilmId(id);
                     viewModel.getDetail.observe(this, filmEntity -> {
-                        if (filmEntity != null){
-                            switch (filmEntity.status){
+                        if (filmEntity != null) {
+                            switch (filmEntity.status) {
                                 case LOADING:
                                     progressBar.setVisibility(View.VISIBLE);
                                     break;
@@ -119,6 +152,7 @@ public class DetailActivity extends AppCompatActivity {
                                 case ERROR:
                                     progressBar.setVisibility(View.GONE);
                                     Toast.makeText(this, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
+
                                     break;
                             }
                         }
@@ -126,6 +160,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         }
+
     }
 
     private void setDetailData(FilmEntity filmEntity) {
@@ -134,13 +169,14 @@ public class DetailActivity extends AppCompatActivity {
         imgBackdrop.setAlpha(0.8f);
 
         tvTitle.setText(filmEntity.getFilmTitle());
-        tvToolbarTitle.setText(filmEntity.getFilmTitle());
         tvDate.setText(filmEntity.getFilmDate());
         tvRating.setText(filmEntity.getFilmRate());
         tvPopularity.setText(filmEntity.getFilmPopularity());
         tvOverview.setText(filmEntity.getFilmOverview());
         tvGenre.setText(filmEntity.getFilmGenre());
         tvLang.setText(filmEntity.getFilmLang());
+        setSupportActionBar(toolbar);
+        toolbar.setTitle(null);
 
         Glide.with(DetailActivity.this).
                 load(BuildConfig.TMDB_POSTER + filmEntity.getFilmPoster()).
@@ -151,17 +187,20 @@ public class DetailActivity extends AppCompatActivity {
                 load(BuildConfig.TMDB_BACKDROP + filmEntity.getFilmBackdrop()).
                 apply(RequestOptions.placeholderOf(R.drawable.ic_image).error(R.drawable.ic_broken_image))
                 .into(imgBackdrop);
-
-        btnBack.setOnClickListener(v -> finish());
     }
 
-    private void setFavoriteState(boolean state){
-        if (state){
-            toggleFavorite.setChecked(true);
-            Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
-        }else {
-            toggleFavorite.setChecked(false);
-            Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show();
+    private void setFavoriteState(boolean state) {
+        if (menu == null) return;
+        MenuItem menuItem = menu.findItem(R.id.action_favorite);
+        if (state) {
+            menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorited));
+        } else {
+            menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorite));
         }
+    }
+
+    private void initViewModel() {
+        ViewModelFactory factory = ViewModelFactory.getInstance(this);
+        viewModel = new ViewModelProvider(this, factory).get(DetailViewModel.class);
     }
 }

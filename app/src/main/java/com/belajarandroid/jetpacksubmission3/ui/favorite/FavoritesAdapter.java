@@ -13,6 +13,7 @@ import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.belajarandroid.jetpacksubmission3.BuildConfig;
 import com.belajarandroid.jetpacksubmission3.R;
 import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.ui.detail.DetailActivity;
@@ -26,6 +27,10 @@ public class FavoritesAdapter extends PagedListAdapter<FilmEntity, FavoritesAdap
     FavoritesAdapter(FavoriteFragmentCallback callback) {
         super(DIFF_CALLBACK);
         this.callback = callback;
+    }
+
+    public FilmEntity getSwipedData(int swipedPosition) {
+        return getItem(swipedPosition);
     }
 
     private static DiffUtil.ItemCallback<FilmEntity> DIFF_CALLBACK =
@@ -80,7 +85,7 @@ public class FavoritesAdapter extends PagedListAdapter<FilmEntity, FavoritesAdap
             tvRate.setText(entity.getFilmRate());
 
             Glide.with(itemView.getContext())
-                    .load(entity.getFilmPoster())
+                    .load(BuildConfig.TMDB_POSTER + entity.getFilmPoster())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_image).error(R.drawable.ic_broken_image))
                     .into(imgPoster);
 

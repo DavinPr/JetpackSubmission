@@ -23,10 +23,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/background_toggle_film"
-        android:checked="true"
-        android:text="@string/movies"
-        android:gravity="center"
         android:button="@null"
+        android:checked="true"
+        android:gravity="center"
+        android:text="@string/movies"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,17 +36,19 @@
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/background_toggle_film"
-        android:text="@string/tv_shows"
         android:button="@null"
         android:gravity="center"
+        android:text="@string/tv_shows"
         app:layout_constraintStart_toEndOf="@+id/rb_movies"
         app:layout_constraintTop_toTopOf="@+id/rb_movies" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_favorites"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rb_movies"

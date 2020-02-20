@@ -21,4 +21,9 @@ public class FavoriteViewModel extends ViewModel {
     public LiveData<PagedList<FilmEntity>> getShowFavorites(){
         return filmRepository.getFavoritedShow();
     }
+
+    void setFavorite(FilmEntity filmEntity){
+        final boolean newState = !filmEntity.isFavorited();
+        filmRepository.setFilmFavorite(filmEntity, newState);
+    }
 }
