@@ -4,11 +4,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.paging.PagedList;
 
-import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.data.FilmRepository;
+import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.vo.Resource;
-
-import java.util.List;
 
 public class MovieViewModel extends ViewModel {
 

@@ -35,7 +35,7 @@ public class LocalDataSource {
         return filmDao.getMovieFavorite();
     }
 
-    public DataSource.Factory<Integer, FilmEntity> getShowFavorites(){
+    public DataSource.Factory<Integer, FilmEntity> getShowFavorites() {
         return filmDao.getShowFavorite();
     }
 

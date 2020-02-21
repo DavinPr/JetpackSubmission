@@ -41,7 +41,7 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
             return (T) new MovieViewModel(filmRepository);
         } else if (modelClass.isAssignableFrom(ShowViewModel.class)) {
             return (T) new ShowViewModel(filmRepository);
-        } else if (modelClass.isAssignableFrom(FavoriteViewModel.class)){
+        } else if (modelClass.isAssignableFrom(FavoriteViewModel.class)) {
             return (T) new FavoriteViewModel(filmRepository);
         } else if (modelClass.isAssignableFrom(DetailViewModel.class)) {
             return (T) new DetailViewModel(filmRepository);

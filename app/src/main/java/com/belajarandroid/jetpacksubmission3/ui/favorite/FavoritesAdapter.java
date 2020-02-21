@@ -22,14 +22,11 @@ import com.bumptech.glide.request.RequestOptions;
 
 public class FavoritesAdapter extends PagedListAdapter<FilmEntity, FavoritesAdapter.FavoritesViewHolder> {
 
-    private final FavoriteFragmentCallback callback;
-
-    FavoritesAdapter(FavoriteFragmentCallback callback) {
+    FavoritesAdapter() {
         super(DIFF_CALLBACK);
-        this.callback = callback;
     }
 
-    public FilmEntity getSwipedData(int swipedPosition) {
+    FilmEntity getSwipedData(int swipedPosition) {
         return getItem(swipedPosition);
     }
 

@@ -14,15 +14,15 @@ public class FavoriteViewModel extends ViewModel {
         this.filmRepository = filmRepository;
     }
 
-    public LiveData<PagedList<FilmEntity>> getMovieFavorites(){
+    LiveData<PagedList<FilmEntity>> getMovieFavorites() {
         return filmRepository.getFavoritedMovie();
     }
 
-    public LiveData<PagedList<FilmEntity>> getShowFavorites(){
+    LiveData<PagedList<FilmEntity>> getShowFavorites() {
         return filmRepository.getFavoritedShow();
     }
 
-    void setFavorite(FilmEntity filmEntity){
+    void setFavorite(FilmEntity filmEntity) {
         final boolean newState = !filmEntity.isFavorited();
         filmRepository.setFilmFavorite(filmEntity, newState);
     }

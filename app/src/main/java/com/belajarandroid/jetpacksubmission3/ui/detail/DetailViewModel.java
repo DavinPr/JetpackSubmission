@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
-import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.data.FilmRepository;
+import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.vo.Resource;
 
 public class DetailViewModel extends ViewModel {
@@ -18,7 +18,7 @@ public class DetailViewModel extends ViewModel {
         this.filmRepository = filmRepository;
     }
 
-    public LiveData<Resource<FilmEntity>> getDetail = Transformations.switchMap(filmId,
+    LiveData<Resource<FilmEntity>> getDetail = Transformations.switchMap(filmId,
             mFilmId -> {
                 LiveData<Resource<FilmEntity>> filmEntity;
                 if (type.equals("movie")) {
@@ -29,24 +29,27 @@ public class DetailViewModel extends ViewModel {
                 return filmEntity;
             });
 
-    public String getFilmId() {
+    private String getFilmId() {
         return this.filmId.getValue();
     }
 
-    public void setFilmId(String filmId) {
+    void setFilmId(String filmId) {
         this.filmId.setValue(filmId);
     }
 
-    public void setType(String type) {
+    void setType(String type) {
         this.type = type;
     }
 
-    void setFavorite(){
+    void setFavorite() {
         Resource<FilmEntity> detailResource = getDetail.getValue();
-        if (detailResource != null){
+        if (detailResource != null) {
             FilmEntity filmEntity = detailResource.data;
-            final boolean newState = !filmEntity.isFavorited();
-            filmRepository.setFilmFavorite(filmEntity, newState);
+            final boolean newState;
+            if (filmEntity != null) {
+                newState = !filmEntity.isFavorited();
+                filmRepository.setFilmFavorite(filmEntity, newState);
+            }
         }
     }
 

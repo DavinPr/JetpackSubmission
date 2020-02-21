@@ -3,10 +3,11 @@ package com.belajarandroid.jetpacksubmission3.ui.show;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+import androidx.paging.PagedList;
 
-import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
 import com.belajarandroid.jetpacksubmission3.data.FilmRepository;
-import com.belajarandroid.jetpacksubmission3.utils.DataDummy;
+import com.belajarandroid.jetpacksubmission3.data.source.local.entity.FilmEntity;
+import com.belajarandroid.jetpacksubmission3.vo.Resource;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -15,7 +16,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -34,7 +34,10 @@ public class ShowViewModelTest {
     private FilmRepository filmRepository;
 
     @Mock
-    private Observer<List<FilmEntity>> observer;
+    private Observer<Resource<PagedList<FilmEntity>>> observer;
+
+    @Mock
+    private PagedList<FilmEntity> pagedList;
 
     @Before
     public void setUp() {
@@ -43,12 +46,13 @@ public class ShowViewModelTest {
 
     @Test
     public void getShow() {
-        ArrayList<FilmEntity> dummyFilm = DataDummy.generateDummyShow();
-        MutableLiveData<List<FilmEntity>> films = new MutableLiveData<>();
+        Resource<PagedList<FilmEntity>> dummyFilm = Resource.success(pagedList);
+        when(dummyFilm.data.size()).thenReturn(10);
+        MutableLiveData<Resource<PagedList<FilmEntity>>> films = new MutableLiveData<>();
         films.setValue(dummyFilm);
 
         when(filmRepository.getShow()).thenReturn(films);
-        List<FilmEntity> filmEntities = showViewModel.getShow().getValue();
+        List<FilmEntity> filmEntities = showViewModel.getShow().getValue().data;
         verify(filmRepository).getShow();
         assertNotNull(filmEntities);
         assertEquals(10, filmEntities.size());

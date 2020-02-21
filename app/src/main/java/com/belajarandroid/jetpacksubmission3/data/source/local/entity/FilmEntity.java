@@ -110,7 +110,7 @@ public class FilmEntity {
         this.filmLang = filmLang;
         this.filmOverview = filmOverview;
         this.filmPopularity = filmPopularity;
-        if (favorited != null){
+        if (favorited != null) {
             this.favorited = favorited;
         }
     }

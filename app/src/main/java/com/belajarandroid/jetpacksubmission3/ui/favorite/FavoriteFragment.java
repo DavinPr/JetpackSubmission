@@ -24,7 +24,7 @@ import com.google.android.material.snackbar.Snackbar;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoriteFragment extends Fragment implements FavoriteFragmentCallback {
+public class FavoriteFragment extends Fragment {
     private RecyclerView rvFavorites;
     private ProgressBar progressBar;
     private RadioButton rbMovies;
@@ -61,7 +61,7 @@ public class FavoriteFragment extends Fragment implements FavoriteFragmentCallba
         if (getActivity() != null) {
             ViewModelFactory factory = ViewModelFactory.getInstance(getActivity());
             viewModel = new ViewModelProvider(this, factory).get(FavoriteViewModel.class);
-            adapter = new FavoritesAdapter(this);
+            adapter = new FavoritesAdapter();
 
             progressBar.setVisibility(View.VISIBLE);
             viewModel.getMovieFavorites().observe(this, filmEntities -> {

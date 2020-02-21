@@ -18,8 +18,10 @@ import java.util.List;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.pressBack;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
@@ -52,6 +54,25 @@ public class MainActivityTest {
         onView(withText("Tv Shows")).perform(click());
         onView(withId(R.id.rv_shows)).check(matches(isDisplayed()));
         onView(withId(R.id.rv_shows)).perform(RecyclerViewActions.scrollToPosition(dummyShow.size()));
+    }
+
+    @Test
+    public void loadBookmarks() {
+        onView(withId(R.id.rv_movies)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.action_favorite)).perform(click());
+        onView(isRoot()).perform(pressBack());
+        onView(withText("Tv Shows")).perform(click());
+        onView(withId(R.id.rv_shows)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.action_favorite)).perform(click());
+        onView(isRoot()).perform(pressBack());
+        onView(withText("Favorites")).perform(click());
+        onView(withId(R.id.rv_favorites)).check(matches(isDisplayed()));
+        onView(withId(R.id.rb_shows)).perform(click());
+        onView(withId(R.id.rv_favorites)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.detail_title)).check(matches(isDisplayed()));
+        onView(withId(R.id.detail_date)).check(matches(isDisplayed()));
+        onView(withId(R.id.action_favorite)).perform(click());
+        onView(isRoot()).perform(pressBack());
     }
 
     @Test

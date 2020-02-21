@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DateHelper {
+class DateHelper {
     String dateFormat(String date) {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat currDf = new SimpleDateFormat("yyyy-MM-dd");

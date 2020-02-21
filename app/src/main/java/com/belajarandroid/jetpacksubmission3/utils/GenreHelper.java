@@ -9,11 +9,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class GenreHelper {
+class GenreHelper {
 
     private Context context;
 
-    public GenreHelper(Context context) {
+    GenreHelper(Context context) {
         this.context = context;
     }
 
@@ -31,7 +31,7 @@ public class GenreHelper {
         }
     }
 
-    public String getMovieGenre(String genre) {
+    String getMovieGenre(String genre) {
         String genreName = null;
         try {
             String json = parsingFileToString("movie_genre.json");
@@ -51,7 +51,7 @@ public class GenreHelper {
         return genreName;
     }
 
-    public String getShowGenre(String genre) {
+    String getShowGenre(String genre) {
         String genreName = null;
         try {
             String json = parsingFileToString("tv_genre.json");

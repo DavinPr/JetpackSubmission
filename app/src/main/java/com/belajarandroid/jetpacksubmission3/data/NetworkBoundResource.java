@@ -12,7 +12,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
 
     private AppExecutors mExecutors;
 
-    public NetworkBoundResource(AppExecutors mExecutors) {
+    protected NetworkBoundResource(AppExecutors mExecutors) {
         this.mExecutors = mExecutors;
         result.setValue(Resource.loading(null));
 
@@ -28,7 +28,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
         });
     }
 
-    protected void onFetchFailed() {
+    private void onFetchFailed() {
     }
 
     protected abstract LiveData<ResultType> loadFromDB();
